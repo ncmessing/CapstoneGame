@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
 
-	//public Texture backgroundTexture;
+	public Texture backgroundTexture;
 	public float guiPlacementX_start=0.9f; 
 	public float guiPlacementY_start=0.8f;
 	public float guiPlacementX_options=0.9f;
@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour {
 	void OnGUI()
 	{
 		//Display background texture
-		//GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
+		GUI.DrawTexture (new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
 		
 		//Display buttons
 		if (GUI.Button (new Rect (Screen.width * guiPlacementX_start, Screen.height * guiPlacementY_start, 
