@@ -7,9 +7,10 @@ public class PlayerMovement : MonoBehaviour {
 	public float sneakSpeed;
 
 	private Animator anim;
-	private bool moving;
-	private bool sneaking;
-	private bool sprinting;
+
+	static public bool moving;
+	static public bool sneaking;
+	static public bool sprinting;
 
 	void Start() {
 		anim = GetComponent<Animator> ();
@@ -21,12 +22,11 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
+		moving = false;
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		transform.rotation = Quaternion.LookRotation (Vector3.forward, mousePos - transform.position);
 
 		float movingSpeed = speed;
-		if (sneaking == true)
-			movingSpeed = sneakSpeed;
 
 		if (Input.GetKey(KeyCode.LeftShift))
 		{
@@ -34,19 +34,13 @@ public class PlayerMovement : MonoBehaviour {
 			sneaking = false;
 			movingSpeed = sprintSpeed;
 		}
-		if (Input.GetKey(KeyCode.C))
+		else if (Input.GetKey(KeyCode.LeftControl))
 		{
-			if (sneaking == false)
-			{
-				sneaking = true;
-				movingSpeed = sneakSpeed;
-			}
-			else
-			{
-				sneaking = false;
-				movingSpeed = speed;
-			}
+			sneaking = true;
+			sprinting = false;
+			movingSpeed = sneakSpeed;
 		}
+
 		if (Input.GetKey(KeyCode.D))
 		{
 			transform.Translate(Vector2.right * movingSpeed);
@@ -71,7 +65,5 @@ public class PlayerMovement : MonoBehaviour {
 			anim.Play ("Player Idle");
 		else // player is moving
 			anim.Play ("Player Moving");
-
-
 	}
 }
