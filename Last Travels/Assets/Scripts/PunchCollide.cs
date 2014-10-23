@@ -13,7 +13,7 @@ public class PunchCollide : MonoBehaviour {
 	{
 		//if (isPunching)
 		//{
-			if (other.tag == "Enemy")
+			if (other.gameObject.tag == "Enemy")
 				Destroy (other.collider2D.transform.parent.gameObject);
 		//}
 	}
