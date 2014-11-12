@@ -11,7 +11,11 @@ public class IGMenu : MonoBehaviour {
 		if(Input.GetKey(KeyCode.Escape))
 		{
 			Application.Quit ();
-	
+		}
+
+		if (Input.GetKey (KeyCode.Delete))
+		{
+			Application.LoadLevel (1);
+		}
 	}
-}
 }
