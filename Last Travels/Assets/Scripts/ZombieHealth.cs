@@ -3,29 +3,32 @@ using System.Collections;
 
 public class ZombieHealth : MonoBehaviour {
 
-
-	public int HP = 1;
-	public bool isEnemy = true;
+	public int HP;
 
 	public void Damage(int damageCount)
 	{
-				HP -= damageCount;
+		HP -= damageCount;
 		if (HP <= 0) 
-		{
 			Destroy (gameObject);
-		}
-
 	}
 
-	void OnTriggerEnter2D(Collider2D otherCollider)
+	public void OnTriggerEnter2D(Collider2D other)
 	{
-
-				ProjectileCollide shot = otherCollider.gameObject.GetComponent<ProjectileCollide> ();
-				if (shot != null) {
-					Destroy (shot.gameObject);
-						
-				}
+		Debug.Log (other.gameObject.name);
+		if (other.gameObject.name == "PlayerProjectile")
+		{
+			PlayerProjectile pp = other.gameObject.GetComponent<PlayerProjectile> ();
+			Debug.Log(pp);
+			if (other.gameObject.tag == "Damager")
+						Damage (pp.damage);
+			Destroy(other);
 		}
-
-
+		else if (other.gameObject.name == "Player Right Arm" || other.gameObject.name == "Player Left Arm")
+		{
+			PlayerAttack pa = other.gameObject.GetComponent<PlayerAttack> ();
+			Debug.Log(pa);
+			if (other.gameObject.tag == "Damager")
+				Damage (pa.damage);
+		}
+	}
 }
