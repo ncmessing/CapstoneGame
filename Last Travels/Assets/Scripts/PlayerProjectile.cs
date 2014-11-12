@@ -7,6 +7,10 @@ public class PlayerProjectile : MonoBehaviour {
 	public float attackSpeed;
 	public int projSpeed;
 	public int damage = 1;
+	public float soundTimer = 0;
+	public float soundCoolDown = 5f;
+
+	public AudioClip shotSound;
 
 	private float coolDown;
 	
@@ -17,10 +21,21 @@ public class PlayerProjectile : MonoBehaviour {
 		if (Time.time >= coolDown) 
 			if (Input.GetKey (KeyCode.Space)) 
 				Fire ();
+
+
+		if (soundTimer != 0)
+						soundTimer -= 0.5f;
 	}
 
 	void Fire()
 	{
+
+		if (soundTimer == 0) 
+		{
+			audio.PlayOneShot (shotSound);
+			soundTimer = soundCoolDown;
+		}
+
 		Rigidbody2D proj = Instantiate (projectile, transform.position, Quaternion.identity) as Rigidbody2D;
 		proj.rigidbody2D.AddForce (transform.up * projSpeed);
 		coolDown = Time.time + attackSpeed;
