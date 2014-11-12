@@ -7,6 +7,6 @@ public class ProjectileCollide : MonoBehaviour {
 	{
 		//if (other.gameObject.tag == "Enemy")
 		//	other.gameObject.GetComponent<ZombieHealth>().Damage(1);
-		Destroy (this);
+		Destroy (this.gameObject);
 	}
 }

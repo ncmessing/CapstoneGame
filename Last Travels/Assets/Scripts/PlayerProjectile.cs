@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerProjectile : MonoBehaviour {
 
-	public Rigidbody projectile;
+	public Rigidbody2D projectile;
 	public float attackSpeed;
 	public int projSpeed;
 	public int damage = 1;
@@ -21,8 +21,8 @@ public class PlayerProjectile : MonoBehaviour {
 
 	void Fire()
 	{
-		Rigidbody proj = Instantiate (projectile, transform.position, Quaternion.identity) as Rigidbody;
-		proj.rigidbody.AddForce (transform.up * projSpeed);
+		Rigidbody2D proj = Instantiate (projectile, transform.position, Quaternion.identity) as Rigidbody2D;
+		proj.rigidbody2D.AddForce (transform.up * projSpeed);
 		coolDown = Time.time + attackSpeed;
 	}
 }
