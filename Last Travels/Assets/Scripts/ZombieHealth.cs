@@ -22,8 +22,7 @@ public class ZombieHealth : MonoBehaviour {
 
 				ProjectileCollide shot = otherCollider.gameObject.GetComponent<ProjectileCollide> ();
 				if (shot != null) {
-
-								Destroy (shot.gameObject);
+					Destroy (shot.gameObject);
 						
 				}
 		}
