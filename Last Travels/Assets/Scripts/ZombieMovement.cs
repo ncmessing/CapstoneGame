@@ -8,14 +8,14 @@ public class ZombieMovement : MonoBehaviour {
 
 	private bool agro;
 	private Animator anim;
-	private bool hittingPlayer;
+//	private bool hittingPlayer;
 	private float modAgroRange;
 
 	void Start()
 	{
 		agro = false;
 		anim = GetComponent<Animator> ();
-		hittingPlayer = false;
+//		hittingPlayer = false;
 		modAgroRange = agroRange;
 	}
 
@@ -47,7 +47,7 @@ public class ZombieMovement : MonoBehaviour {
 
 			transform.eulerAngles = new Vector3 (0, 0, z);
 
-			if (hittingPlayer == false)
+			if (dist >= 0.525)
 			{
 				transform.Translate (Vector2.up * speed);
 				anim.Play ("Zombie Moving");
@@ -59,17 +59,17 @@ public class ZombieMovement : MonoBehaviour {
 			anim.Play ("Zombie Idle");
 	}
 
-	void OnCollisionEnter2D(Collision2D other)
-	{
-		if (other.gameObject.tag == "Player")
-			hittingPlayer = true;
-		else
-			transform.Translate (Vector2.right * (speed / 2));
-	}
-
-	void OnCollisionExit2D(Collision2D other)
-	{
-		if (other.gameObject.tag == "Player")
-			hittingPlayer = false;
-	}
+//	void OnCollisionEnter2D(Collision2D other)
+//	{
+//		if (other.gameObject.tag == "Player")
+//			hittingPlayer = true;
+//		else
+//			transform.Translate (Vector2.right * (speed / 2));
+//	}
+//
+//	void OnCollisionExit2D(Collision2D other)
+//	{
+//		if (other.gameObject.tag == "Player")
+//			hittingPlayer = false;
+//	}
 }

@@ -5,6 +5,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed;
 	public float sprintSpeed;
 	public float sneakSpeed;
+	public double health;
 
 	private Animator anim;
 
@@ -65,5 +66,12 @@ public class PlayerMovement : MonoBehaviour {
 			anim.Play ("Player Idle");
 		else // player is moving
 			anim.Play ("Player Moving");
+	}
+
+	public void Damage(double damage)
+	{
+		this.health -= damage;
+		if (this.health <= 0)
+			Destroy (this);
 	}
 }
