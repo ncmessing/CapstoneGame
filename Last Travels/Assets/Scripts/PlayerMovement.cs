@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
 	static public bool moving;
 	static public bool sneaking;
 	static public bool sprinting;
+	static public bool tookDamage;
 
 	void Start() {
 		anim = GetComponent<Animator> ();
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		moving = false;
+		tookDamage = false;
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		transform.rotation = Quaternion.LookRotation (Vector3.forward, mousePos - transform.position);
 
@@ -70,6 +72,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void Damage(double damage)
 	{
+		tookDamage = true;
 		this.health -= damage;
 		if (this.health <= 0)
 			Destroy (gameObject);

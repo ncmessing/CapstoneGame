@@ -8,20 +8,20 @@ public class IrradiatedZombieHit : MonoBehaviour {
 		if (other.gameObject.tag == "Player")
 		{
 			player = other.GetComponentInParent<PlayerMovement>();
-			InvokeRepeating("DamagePlayer", 0, 1);
-			WaitForTime(5);
-			CancelInvoke();
+			DamagePlayer(5, 1);
 		}	
 	}
 
-	IEnumerator WaitForTime(int time)
+	IEnumerator DamagePlayer(int time, int interval)
 	{
-		yield return new WaitForSeconds (5);
-	}
-
-	void DamagePlayer()
-	{
-		Debug.Log ("Damaging player");
-		player.Damage(.1);
+		int count = time / interval;
+		Debug.Log (count);
+		while (count > 0)
+		{
+			Debug.Log ("Player damaged");
+			player.Damage(.1);
+			yield return new WaitForSeconds (interval);
+			count -= 1;
+		}
 	}
 }
