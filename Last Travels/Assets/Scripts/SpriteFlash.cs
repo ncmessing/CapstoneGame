@@ -11,6 +11,8 @@ public class SpriteFlash : MonoBehaviour {
 		sprite_render = GetComponent<SpriteRenderer> ();
 		sprite_render.enabled = false;
 	}
+
+	/* GIT TEST */
 	
 	void FixedUpdate () {
 
