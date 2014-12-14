@@ -7,7 +7,8 @@ public class ZombieHit : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Player")
 		{
-			Debug.Log("Hitting player");
+			PlayerMovement player = other.GetComponentInParent<PlayerMovement>();
+			player.Damage(.1);
 		}	
 	}
 }

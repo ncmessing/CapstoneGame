@@ -7,16 +7,21 @@ public class CameraMovement : MonoBehaviour {
 	public Camera camera;
 
 	void FixedUpdate () {
-		transform.position = player.position + new Vector3 (player.eulerAngles.x, player.eulerAngles.y, -10);
+		if (player != null)
+		{
+			transform.position = player.position + new Vector3 (player.eulerAngles.x, player.eulerAngles.y, -10);
 
-		if (Input.GetKey(KeyCode.KeypadPlus))
-		{
-			camera.orthographicSize++;
-		}
-		else if (Input.GetKey(KeyCode.KeypadMinus))
-		{
-			if (camera.orthographicSize > 1)
-				camera.orthographicSize--;
+			if (Input.GetKey(KeyCode.KeypadPlus))
+			{
+				camera.orthographicSize++;
+				buttonPress(KeyCode.KeypadPlus);
+			}
+			else if (Input.GetKey(KeyCode.KeypadMinus))
+			{
+				if (camera.orthographicSize > 1)
+					camera.orthographicSize--;
+				buttonPress(KeyCode.KeypadMinus);
+			}
 		}
 	}
 

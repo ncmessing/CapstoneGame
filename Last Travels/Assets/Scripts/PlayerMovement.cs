@@ -72,6 +72,6 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		this.health -= damage;
 		if (this.health <= 0)
-			Destroy (this);
+			Destroy (gameObject);
 	}
 }

@@ -21,10 +21,9 @@ public class PlayerProjectile : MonoBehaviour {
 		if (Time.time >= coolDown) 
 			if (Input.GetKey (KeyCode.Space)) 
 				Fire ();
-
-
+		
 		if (soundTimer != 0)
-						soundTimer -= 0.5f;
+			soundTimer -= 0.5f;
 	}
 
 	void Fire()
