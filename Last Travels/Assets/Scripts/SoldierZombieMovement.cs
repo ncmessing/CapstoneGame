@@ -10,6 +10,9 @@ public class SoldierZombieMovement : MonoBehaviour {
 	private Animator anim;
 	private float modAgroRange;
 	
+	public AudioClip aggroSound;
+	public bool soundPlayed = false;
+	
 	void Start()
 	{
 		agro = false;
@@ -51,6 +54,11 @@ public class SoldierZombieMovement : MonoBehaviour {
 				{
 					transform.Translate (Vector2.up * speed);
 					anim.Play ("Zombie Moving");
+					if (soundPlayed == false)
+					{
+						audio.PlayOneShot(aggroSound);
+						soundPlayed = true;
+					}
 				}
 				else
 					anim.Play ("Zombie Idle");
@@ -62,3 +70,4 @@ public class SoldierZombieMovement : MonoBehaviour {
 			anim.Play("Zombie Idle");
 	}
 }
+

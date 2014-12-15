@@ -5,20 +5,23 @@ public class ZombieMovement : MonoBehaviour {
 	public float speed;
 	public float agroRange;
 	public Transform player;
-
+	
 	private bool agro;
 	private Animator anim;
-//	private bool hittingPlayer;
+	//	private bool hittingPlayer;
 	private float modAgroRange;
-
+	
+	public AudioClip aggroSound;
+	public bool soundPlayed = false;
+	
 	void Start()
 	{
 		agro = false;
 		anim = GetComponent<Animator> ();
-//		hittingPlayer = false;
+		//		hittingPlayer = false;
 		modAgroRange = agroRange;
 	}
-
+	
 	void FixedUpdate ()
 	{
 		if (player != null)
@@ -40,19 +43,24 @@ public class ZombieMovement : MonoBehaviour {
 				agro = true;
 			else
 				agro = false;
-
+			
 			if (agro == true)
 			{
 				// calulates which direction to look at (towards player)
 				float z = Mathf.Atan2 ((player.transform.position.y - transform.position.y),
-			              (player.transform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90;
-
+				                       (player.transform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90;
+				
 				transform.eulerAngles = new Vector3 (0, 0, z);
-
+				
 				if (dist >= 0.525)
 				{
 					transform.Translate (Vector2.up * speed);
 					anim.Play ("Zombie Moving");
+					if (soundPlayed == false)
+					{
+						audio.PlayOneShot(aggroSound);
+						soundPlayed = true;
+					}
 				}
 				else
 					anim.Play ("Zombie Idle");
@@ -63,18 +71,19 @@ public class ZombieMovement : MonoBehaviour {
 		else
 			anim.Play("Zombie Idle");
 	}
-
-//	void OnCollisionEnter2D(Collision2D other)
-//	{
-//		if (other.gameObject.tag == "Player")
-//			hittingPlayer = true;
-//		else
-//			transform.Translate (Vector2.right * (speed / 2));
-//	}
-//
-//	void OnCollisionExit2D(Collision2D other)
-//	{
-//		if (other.gameObject.tag == "Player")
-//			hittingPlayer = false;
-//	}
+	
+	//	void OnCollisionEnter2D(Collision2D other)
+	//	{
+	//		if (other.gameObject.tag == "Player")
+	//			hittingPlayer = true;
+	//		else
+	//			transform.Translate (Vector2.right * (speed / 2));
+	//	}
+	//
+	//	void OnCollisionExit2D(Collision2D other)
+	//	{
+	//		if (other.gameObject.tag == "Player")
+	//			hittingPlayer = false;
+	//	}
 }
+

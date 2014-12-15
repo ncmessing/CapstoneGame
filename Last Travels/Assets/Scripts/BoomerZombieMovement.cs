@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 
 public class BoomerZombieMovement : MonoBehaviour {
@@ -11,6 +12,9 @@ public class BoomerZombieMovement : MonoBehaviour {
 	private Animator anim;
 	private float modAgroRange;
 	private bool booming;
+	public AudioClip aggroSound;
+	public AudioClip explosionSound;
+	public bool soundPlayed = false;
 	
 	void Start()
 	{
@@ -18,7 +22,7 @@ public class BoomerZombieMovement : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		modAgroRange = agroRange;
 	}
-
+	
 	void FixedUpdate ()
 	{
 		if (dead == true)
@@ -55,12 +59,19 @@ public class BoomerZombieMovement : MonoBehaviour {
 				{
 					transform.Translate (Vector2.up * speed);
 					anim.Play ("Zombie Moving");
+					if (soundPlayed == false)
+					{
+						audio.PlayOneShot(aggroSound);
+						soundPlayed = true;
+					}
 				}
 				else
 				{
+					audio.PlayOneShot(explosionSound);
 					anim.Play ("Boomer Explode");
 					booming = true;
 					player = null;
+					
 				}
 			}
 			else
@@ -70,3 +81,4 @@ public class BoomerZombieMovement : MonoBehaviour {
 			anim.Play("Zombie Idle");
 	}
 }
+

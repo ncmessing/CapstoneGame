@@ -3,6 +3,15 @@ using System.Collections;
 
 public class SoldierZombieHit : MonoBehaviour {
 	private PlayerMovement player;
+	
+	public AudioClip damageSound;
+	public bool soundPlayed = false;
+	public float soundTimer = 0;
+	public float soundCoolDown = 2f;
+	private float coolDown;
+	public float replaySpeed;
+	
+	
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Player")
@@ -15,6 +24,19 @@ public class SoldierZombieHit : MonoBehaviour {
 	void DamagePlayer()
 	{
 		player.Damage (.25);
+		if (Time.time >= coolDown) 
+		{
+			if (soundTimer != 0)
+				soundTimer -= 0.5f;
+			else
+			{
+				audio.PlayOneShot(damageSound);
+				soundTimer = soundCoolDown;
+				coolDown = Time.time + replaySpeed;
+			}
+			
+			
+		}
 	}
 	
 	void OnTriggerExit2D(Collider2D other)
