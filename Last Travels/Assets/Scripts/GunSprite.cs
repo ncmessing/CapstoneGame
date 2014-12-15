@@ -13,17 +13,17 @@ public class GunSprite : MonoBehaviour {
 	
 	void FixedUpdate ()
 	{
-		if (PlayerMovement.ak47_equipped== true)
-		{
-			equipped = true;
-		}
-		if (equipped == true)
-		{
-			sprite_render.enabled = true;
-		}
-		else if (equipped == false)
-		{
-			sprite_render.enabled = false;
-		}
+//		if (PlayerMovement.ak47_equipped== true)
+//		{
+//			equipped = true;
+//		}
+//		if (equipped == true)
+//		{
+//			sprite_render.enabled = true;
+//		}
+//		else if (equipped == false)
+//		{
+//			sprite_render.enabled = false;
+//		}
 	}
 }

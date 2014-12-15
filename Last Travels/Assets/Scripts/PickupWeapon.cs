@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PickupWeapon : MonoBehaviour {
 
-	public Texture gun;
+	public Sprite gun;
 	public string wepName;
 
 	void OnTriggerEnter2D(Collider2D other)

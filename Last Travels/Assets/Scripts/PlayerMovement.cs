@@ -6,10 +6,11 @@ public class PlayerMovement : MonoBehaviour {
 	public float sprintSpeed;
 	public float sneakSpeed;
 	public double health;
-	public Texture weapon;
+	public Sprite weapon;
 	public string wepName;
 
 	private Animator anim;
+	private SpriteRenderer sr;
 
 	static public bool moving;
 	static public bool sneaking;
@@ -31,13 +32,14 @@ public class PlayerMovement : MonoBehaviour {
 	public bool poisonedBool = false;
 
 	//gun values
-	static public bool ak47_equipped = false;
+	static public bool gunEquipped = true;
 
 	void Start() {
 		anim = GetComponent<Animator> ();
 		moving = false;
 		sneaking = false;
 		sprinting = false;
+		sr = GetComponent<SpriteRenderer> ();
 	}
 
 	// Update is called once per frame
@@ -106,11 +108,10 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 
-		if (this.wepName=="AK47")
-		{
-			ak47_equipped = true;
-		}
-
+		if (gunEquipped)
+			sr.enabled = true;
+		else
+			sr.enabled = false;
 	}
 
 	public void Damage(double damage)
@@ -143,10 +144,11 @@ public class PlayerMovement : MonoBehaviour {
 		}
 	}
 
-	public void SetWeapon(Texture newWeapon, string newWepName)
+	public void SetWeapon(Sprite newWeapon, string newWepName)
 	{
 		this.weapon = newWeapon;
 		this.wepName = newWepName;
+		sr.sprite = (Sprite) newWeapon;
 	}
 
 	public void PoisonCheck()
