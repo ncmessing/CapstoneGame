@@ -51,7 +51,7 @@ public class BoomerZombieMovement : MonoBehaviour {
 				
 				transform.eulerAngles = new Vector3 (0, 0, z);
 				
-				if (dist >= .75)
+				if (dist >= .7)
 				{
 					transform.Translate (Vector2.up * speed);
 					anim.Play ("Zombie Moving");
