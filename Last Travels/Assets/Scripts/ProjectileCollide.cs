@@ -2,7 +2,12 @@
 using System.Collections;
 
 public class ProjectileCollide : MonoBehaviour {
+
+	public float travelTimer = 50;
+	public float travelDuration = 5f;
 	
+	private float coolDown;
+
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag != "Player" && other.gameObject.tag != "Damager")
@@ -16,4 +21,14 @@ public class ProjectileCollide : MonoBehaviour {
 				Destroy (gameObject);
 		}
 	}
+
+	void FixedUpdate()
+	{
+		if (travelTimer != 0)
+			travelTimer -= 0.5f;
+		if (travelTimer <= 0) 
+			Destroy (gameObject);
+	}
+
+
 }
