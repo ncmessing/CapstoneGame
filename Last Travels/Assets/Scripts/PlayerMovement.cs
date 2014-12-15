@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 		moving = false;
 		sneaking = false;
 		sprinting = false;
+		gunEquipped = true;
 		sr = GetComponent<SpriteRenderer> ();
 	}
 
