@@ -15,6 +15,7 @@ public class IrradiatedZombieHit : MonoBehaviour {
 	void DamagePlayer()
 	{
 		player.Damage (.1);
+		player.poisonedBool = true;
 	}
 	
 	void OnTriggerExit2D(Collider2D other)

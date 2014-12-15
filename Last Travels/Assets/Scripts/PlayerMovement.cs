@@ -21,6 +21,13 @@ public class PlayerMovement : MonoBehaviour {
 	static public bool Sprite4 = false;
 	static public bool Sprite5 = false;
 
+	//poison
+	public float poisonTimer = 0;
+	public float poisonCoolDown = 3f;
+	private float coolDown;
+	public float poisonDuration;
+	public bool poisonedBool = false;
+
 
 	void Start() {
 		anim = GetComponent<Animator> ();
@@ -76,7 +83,31 @@ public class PlayerMovement : MonoBehaviour {
 			anim.Play ("Player Idle");
 		else // player is moving
 			anim.Play ("Player Moving");
+
+		//poison check
+
+		if (Time.time >= coolDown)
+			if (poisonedBool==true)
+						PoisonCheck();
+
+		if (poisonTimer != 0)
+		{
+			this.health -= 0.01f;
+			tookDamage = !tookDamage;
+			poisonTimer -= 0.25f;
+			startingHealth = this.health;
+			if (this.health <= 0)
+			{
+				Destroy (gameObject);
+
+			}
+
+		}
+
+
 	}
+
+
 
 	public void Damage(double damage)
 	{
@@ -109,6 +140,17 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	}
+
+	public void PoisonCheck()
+	{
+		if (poisonTimer==0)
+		{
+			poisonTimer = poisonCoolDown;
+			poisonedBool = false;
+		}
+		coolDown = Time.time + poisonDuration;
+	}
+
 
 
 }
