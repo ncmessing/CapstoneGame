@@ -8,6 +8,7 @@ TextureImporter:
     21300006: Boomer Zombie_3
     21300008: Boomer Zombie_4
     21300010: Boomer Zombie_5
+    21300012: Boomer Zombie_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -103,6 +104,16 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boomer Zombie_6
+      rect:
+        serializedVersion: 2
+        x: 128
         y: 128
         width: 64
         height: 64
