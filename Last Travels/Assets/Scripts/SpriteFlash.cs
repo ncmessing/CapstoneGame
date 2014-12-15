@@ -24,12 +24,14 @@ public class SpriteFlash : MonoBehaviour {
 		{
 			sprite_render.enabled = true;
 
+
 		}
 		else if (damaged == false)
 		{
 			sprite_render.enabled = false;
 		}
 		damaged = false;
+
 	
 	}
 }

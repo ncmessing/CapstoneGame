@@ -14,6 +14,14 @@ public class PlayerMovement : MonoBehaviour {
 	static public bool sprinting;
 	static public bool tookDamage;
 
+	public double originalHealth;
+	static public double startingHealth = 5;
+	static public bool Sprite2 = false;
+	static public bool Sprite3 = false;
+	static public bool Sprite4 = false;
+	static public bool Sprite5 = false;
+
+
 	void Start() {
 		anim = GetComponent<Animator> ();
 		moving = false;
@@ -75,6 +83,32 @@ public class PlayerMovement : MonoBehaviour {
 		tookDamage = true;
 		this.health -= damage;
 		if (this.health <= 0)
+		{
 			Destroy (gameObject);
+			Application.LoadLevel("DeadLevel");
+		}
+
+		startingHealth = this.health;
+
+		if (originalHealth / 5 >= this.health) 
+		{
+			Sprite5 = true;
+		} 
+		else if (originalHealth / 4 >= this.health) 
+		{
+			Sprite4 = true;
+		} 
+		else if (originalHealth / 3 >= this.health) 
+		{
+			Sprite3 = true;
+		} 
+		else if (originalHealth / 2 >= this.health) 
+		{
+			Sprite2 = true;
+		}
+
+
 	}
+
+
 }
