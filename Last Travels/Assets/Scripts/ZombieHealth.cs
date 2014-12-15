@@ -3,12 +3,16 @@ using System.Collections;
 
 public class ZombieHealth : MonoBehaviour {
 
-	public int HP;
+	public double HP;
 
-	public void Damage(int damageCount)
+	public void Damage(double damage)
 	{
-		HP -= damageCount;
-		if (HP <= 0) 
+		Debug.Log ("Zombie took damage");
+		HP -= damage;
+		if (HP <= 0)
+		{
+			Debug.Log("Zombie Die");
 			Destroy (gameObject);
+		}
 	}
 }

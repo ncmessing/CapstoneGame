@@ -5,11 +5,12 @@ public class BoomerZombieMovement : MonoBehaviour {
 	public float speed;
 	public float agroRange;
 	public Transform player;
-	public bool died;
+	public bool dead;
 	
 	private bool agro;
 	private Animator anim;
 	private float modAgroRange;
+	private bool booming;
 	
 	void Start()
 	{
@@ -17,10 +18,10 @@ public class BoomerZombieMovement : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		modAgroRange = agroRange;
 	}
-	
+
 	void FixedUpdate ()
 	{
-		if (died == true)
+		if (dead == true)
 			Destroy(gameObject);
 		if (player != null)
 		{
@@ -56,12 +57,16 @@ public class BoomerZombieMovement : MonoBehaviour {
 					anim.Play ("Zombie Moving");
 				}
 				else
+				{
 					anim.Play ("Boomer Explode");
+					booming = true;
+					player = null;
+				}
 			}
 			else
 				anim.Play ("Zombie Idle");
 		}
-		else
+		else if (booming == false)
 			anim.Play("Zombie Idle");
 	}
 }
