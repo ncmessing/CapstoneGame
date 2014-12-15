@@ -10,9 +10,9 @@ public class ProjectileCollide : MonoBehaviour {
 			if (other.gameObject.tag == "Enemy")
 			{
 				ZombieHealth zh = other.GetComponentInParent<ZombieHealth>();
-				zh.Damage(1);
+				zh.Damage(PlayerProjectile.projDamage);
 			}
-			if (other.gameObject.tag != "Weapon")
+			if (other.gameObject.tag != "Weapon" && other.gameObject.tag != "BG")
 				Destroy (gameObject);
 		}
 	}

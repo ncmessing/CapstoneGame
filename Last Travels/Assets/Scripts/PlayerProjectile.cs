@@ -6,7 +6,7 @@ public class PlayerProjectile : MonoBehaviour {
 	public Rigidbody2D projectile;
 	public float attackSpeed;
 	public int projSpeed;
-	public int damage = 1;
+	public static float projDamage = 1;
 	public float soundTimer = 0;
 	public float soundCoolDown = 5f;
 
@@ -38,5 +38,11 @@ public class PlayerProjectile : MonoBehaviour {
 		Rigidbody2D proj = Instantiate (projectile, transform.position, Quaternion.identity) as Rigidbody2D;
 		proj.rigidbody2D.AddForce (transform.up * projSpeed);
 		coolDown = Time.time + attackSpeed;
+	}
+
+	public void SetStats(float atts, float dam)
+	{
+		this.attackSpeed = atts;
+		projDamage = dam;
 	}
 }

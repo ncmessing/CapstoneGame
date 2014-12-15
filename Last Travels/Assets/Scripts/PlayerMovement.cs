@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private Animator anim;
 	private SpriteRenderer sr;
+	private PlayerProjectile pp;
 
 	static public bool moving;
 	static public bool sneaking;
@@ -41,6 +42,7 @@ public class PlayerMovement : MonoBehaviour {
 		sprinting = false;
 		gunEquipped = true;
 		sr = GetComponent<SpriteRenderer> ();
+		pp = GetComponent<PlayerProjectile> ();
 	}
 
 	// Update is called once per frame
@@ -106,6 +108,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (this.health <= 0)
 			{
 				Destroy (gameObject);
+				Application.LoadLevel("DeadLevel");
 			}
 		}
 
@@ -150,6 +153,12 @@ public class PlayerMovement : MonoBehaviour {
 		this.weapon = newWeapon;
 		this.wepName = newWepName;
 		sr.sprite = (Sprite) newWeapon;
+		if (this.wepName == "Magnum")
+			pp.SetStats (0.5F, 1);
+		else if (this.wepName == "AK47")
+			pp.SetStats (0.2F, .5F);
+		else if (this.wepName == "M4A1")
+			pp.SetStats (0.1F, .35F);
 	}
 
 	public void PoisonCheck()
