@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 	public float sprintSpeed;
 	public float sneakSpeed;
 	public double health;
+	public Texture weapon;
+	public string wepName;
 
 	private Animator anim;
 
@@ -99,15 +101,9 @@ public class PlayerMovement : MonoBehaviour {
 			if (this.health <= 0)
 			{
 				Destroy (gameObject);
-
 			}
-
 		}
-
-
 	}
-
-
 
 	public void Damage(double damage)
 	{
@@ -137,8 +133,12 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			Sprite2 = true;
 		}
+	}
 
-
+	public void SetWeapon(Texture newWeapon, string newWepName)
+	{
+		this.weapon = newWeapon;
+		this.wepName = newWepName;
 	}
 
 	public void PoisonCheck()
@@ -150,7 +150,4 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		coolDown = Time.time + poisonDuration;
 	}
-
-
-
 }

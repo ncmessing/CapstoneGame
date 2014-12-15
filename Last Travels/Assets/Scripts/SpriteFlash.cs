@@ -12,10 +12,8 @@ public class SpriteFlash : MonoBehaviour {
 		sprite_render.enabled = false;
 	}
 
-	/* GIT TEST */
-	
-	void FixedUpdate () {
-
+	void FixedUpdate ()
+	{
 		if (PlayerMovement.tookDamage == true)
 		{
 			damaged = true;
@@ -23,15 +21,11 @@ public class SpriteFlash : MonoBehaviour {
 		if (damaged == true)
 		{
 			sprite_render.enabled = true;
-
-
 		}
 		else if (damaged == false)
 		{
 			sprite_render.enabled = false;
 		}
 		damaged = false;
-
-	
 	}
 }
