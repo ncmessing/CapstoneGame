@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour {
 	public float poisonDuration;
 	public bool poisonedBool = false;
 
+	//gun values
+	static public bool ak47_equipped = false;
 
 	void Start() {
 		anim = GetComponent<Animator> ();
@@ -103,6 +105,12 @@ public class PlayerMovement : MonoBehaviour {
 				Destroy (gameObject);
 			}
 		}
+
+		if (this.wepName=="AK47")
+		{
+			ak47_equipped = true;
+		}
+
 	}
 
 	public void Damage(double damage)
